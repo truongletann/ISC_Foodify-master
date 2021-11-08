@@ -35,6 +35,33 @@
 </head>
 
 <body class="body-fixed">
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "105733751924090");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!-- Start of Page Loader-->
     <div class="page-loader">
@@ -62,18 +89,8 @@
                                 <li><a title="About" href="about-us.html">About</a></li>
                                 <li><a title="Menu" href="our-menu.html">Menu</a></li>
                                 <li><a title="Gallery" href="gallery.html">Gallery</a></li>
-                                <li class="dropdown-items">
-                                    <a title="Blog" href="javascript:void(0);">Blog <span
-                                            class="for-des dropdown-icon"><i class="fas fa-chevron-down"
-                                                aria-hidden="true"></i></span></a>
-                                    <span class="for-mob dropdown-icon"><i class="fas fa-chevron-down"
-                                            aria-hidden="true"></i></span>
-                                    <ul class="sub-menu">
-                                        <li><a title="Blog" href="blog-page.html">Blog</a></li>
-                                        <li><a title="Blog Single" href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a title="Contact" class="active-menu" href="contact.html">Contact</a></li>
+                                <li><a title="Gallery" href="blog-page.html">Gallery</a></li>
+                                <li><a title="Contact" href="contact.html">Contact</a></li>
                             </ul>
                         </div>
                         <div class="header-right">
