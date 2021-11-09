@@ -187,11 +187,12 @@
                                             function logout() {
                                                 FB.logout(function (response) {
                                                     console.log('Successfully logged out');
+                                                    window.location="login.html";
                                                 });
                                             }
                                         </script>
                                         <li>
-                                            <a title="Blog Single" onclick="logout();"  href="login.html">Logout</a>
+                                            <a title="Blog Single" onclick="logout();">Logout</a>
                                         </li>
                                     </ul>
                                 </li>
