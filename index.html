@@ -27,7 +27,36 @@
 
     <!-- Main Style CSS Link -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .modal123 {
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
 
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
 </head>
 
 <body class="body-fixed">
@@ -187,7 +216,7 @@
                                             function logout() {
                                                 FB.logout(function (response) {
                                                     console.log('Successfully logged out');
-                                                    window.location="login.html";
+                                                    window.location = "login.html";
                                                 });
                                             }
                                         </script>
@@ -1319,6 +1348,17 @@
                             </div>
                         </div>
                         <button type="button" class="scrolltop"> <i class="fas fa-chevron-up"></i></button>
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Some text in the Modal..</p>
+                                álkdaskdlkas
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </footer>
