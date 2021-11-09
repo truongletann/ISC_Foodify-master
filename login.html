@@ -208,6 +208,139 @@
         .foot-lnk {
             text-align: center;
         }
+
+
+
+
+
+
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* style the container */
+        .container {
+            position: relative;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px 0 30px 0;
+        }
+
+        /* style inputs and link buttons */
+        input,
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            margin: 5px 0;
+            opacity: 0.85;
+            display: inline-block;
+            font-size: 17px;
+            line-height: 20px;
+            text-decoration: none;
+            /* remove underline from anchors */
+        }
+
+        input:hover,
+        .btn:hover {
+            opacity: 1;
+        }
+
+        /* add appropriate colors to fb, twitter and google buttons */
+        .fb {
+            background-color: #3B5998;
+            color: white;
+        }
+
+        .twitter {
+            background-color: #55ACEE;
+            color: white;
+        }
+
+        .google {
+            background-color: #dd4b39;
+            color: white;
+        }
+
+        /* style the submit button */
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        /* Two-column layout */
+        .col {
+            float: left;
+            width: 50%;
+            margin: auto;
+            padding: 0 50px;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* vertical line */
+        .vl {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid #ddd;
+            height: 175px;
+        }
+
+        /* text inside the vertical line */
+        .inner {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 8px 10px;
+        }
+
+        /* hide some text on medium and large screens */
+        .hide-md-lg {
+            display: none;
+        }
+
+        /* bottom container */
+        .bottom-container {
+            text-align: center;
+            background-color: #666;
+            border-radius: 0px 0px 4px 4px;
+        }
+
+        /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 650px) {
+            .col {
+                width: 100%;
+                margin-top: 0;
+            }
+
+            /* hide the vertical line */
+            .vl {
+                display: none;
+            }
+
+            /* show the hidden text on small screens */
+            .hide-md-lg {
+                display: block;
+                text-align: center;
+            }
+        }
     </style>
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" data-auto-replace-svg="nest"></script>
 </head>
@@ -234,33 +367,13 @@
                     </div>
                     <div class="group">
                         <a href="index.html">
-                            <input type="submit" class="button" value="Sign In">
+                            <input type="submit" id="loginSuccess" class="button" value="Sign In">
                         </a>
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <a href="#forgot">Forgot Password?</a>
                     </div>
-
-
-                    <!-- <script>
-                        window.fbAsyncInit = function () {
-                            FB.init({
-                                appId: '431367118394240',
-                                xfbml: true,
-                                version: 'v12.0'
-                            });
-                            FB.AppEvents.logPageView();
-                        };
-
-                        (function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) { return; }
-                            js = d.createElement(s); js.id = id;
-                            js.src = "https://connect.facebook.net/en_US/sdk.js";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));
-                    </script> -->
 
                     <script>
 
@@ -269,9 +382,9 @@
                             console.log(response);                   // The current login status of the person.
                             if (response.status === 'connected') {   // Logged into your webpage and Facebook.
                                 testAPI();
+                                document.getElementById('loginSuccess').click();
                             } else {                                 // Not logged into your webpage or we are unable to tell.
-                                document.getElementById('status').innerHTML = 'Please log ' +
-                                    'into this webpage.';
+
                             }
                         }
 
@@ -305,26 +418,29 @@
                                     'Thanks for logging in, ' + response.name + '!';
                             });
                         }
-
+                        function logout() {
+                            FB.logout(function (response) {
+                                console.log('Successfully logged out');
+                            });
+                        }
                     </script>
-                    
-                    <!-- The JS SDK Login Button -->
-                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                    </fb:login-button>
 
-                    <div id="status">
-                    </div>
+                    <!-- The JS SDK Login Button -->
+                    <fb:login-button id="loginBtn" scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
 
                     <!-- Load the JS SDK asynchronously -->
                     <script async defer crossorigin="anonymous"
                         src="https://connect.facebook.net/en_US/sdk.js"></script>
-                    <div id="status">
+
+                    <div class="fb btn" onclick="document.getElementById('loginBtn').click()">
+                        <i class="fab fa-facebook-f"></i> Login with Facebook
                     </div>
 
-                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                    </fb:login-button>
+                    <div class="fb btn" onclick="logout();">
+                        <i class="fab fa-facebook-f"></i> Logout with Facebook
+                    </div>
                 </div>
-
 
                 <div class="sign-up-htm">
                     <div class="group">
