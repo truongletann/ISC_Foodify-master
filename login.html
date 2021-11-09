@@ -375,44 +375,31 @@
                     </div>
 
 
-                    <div id="fb-root"></div>
-                    <script type="text/javascript">
+                    <script>
                         window.fbAsyncInit = function () {
                             FB.init({
-                                appId: '1091252897976359', // App ID
-                                channelURL: '', // Channel File, not required so leave empty
-                                status: true, // check login status
-                                cookie: true, // enable cookies to allow the server to access the session
-                                oauth: true, // enable OAuth 2.0
-                                xfbml: false  // parse XFBML
+                                appId: '431367118394240',
+                                xfbml: true,
+                                version: 'v12.0'
                             });
+                            FB.AppEvents.logPageView();
                         };
-                        // logs the user in the application and facebook
-                        function login() {
-                            FB.getLoginStatus(function (r) {
-                                if (r.status === 'connected') {
-                                    window.location.href = 'fbconnect.php';
-                                } else {
-                                    FB.login(function (response) {
-                                        if (response.authResponse) {
-                                            //if (response.perms)
-                                            window.location.href = 'fbconnect.php';
-                                        } else {
-                                            // user is not logged in
-                                        }
-                                    }, { scope: 'email' }); // which data to access from user profile
-                                }
-                            });
-                        }
-                        // Load the SDK Asynchronously
-                        (function () {
-                            var e = document.createElement('script'); e.async = true;
-                            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-                            document.getElementById('fb-root').appendChild(e);
-                        }());
+
+                        (function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) { return; }
+                            js = d.createElement(s); js.id = id;
+                            js.src = "https://connect.facebook.net/en_US/sdk.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
                     </script>
-                    <a href='#' class="fb btn" onclick='login();'><i class="fab fa-facebook-f"></i> Login with
-                        Facebook</a>
+
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous"
+                        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=431367118394240&autoLogAppEvents=1"
+                        nonce="rJ018D9d"></script>
+                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with"
+                        data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
                 </div>
 
 
