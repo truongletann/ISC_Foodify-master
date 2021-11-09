@@ -208,8 +208,140 @@
         .foot-lnk {
             text-align: center;
         }
-    </style>
 
+
+
+
+
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* style the container */
+        .container {
+            position: relative;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px 0 30px 0;
+        }
+
+        /* style inputs and link buttons */
+        input,
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            margin: 5px 0;
+            opacity: 0.85;
+            display: inline-block;
+            font-size: 17px;
+            line-height: 20px;
+            text-decoration: none;
+            /* remove underline from anchors */
+        }
+
+        input:hover,
+        .btn:hover {
+            opacity: 1;
+        }
+
+        /* add appropriate colors to fb, twitter and google buttons */
+        .fb {
+            background-color: #3B5998;
+            color: white;
+        }
+
+        .twitter {
+            background-color: #55ACEE;
+            color: white;
+        }
+
+        .google {
+            background-color: #dd4b39;
+            color: white;
+        }
+
+        /* style the submit button */
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        /* Two-column layout */
+        .col {
+            float: left;
+            width: 50%;
+            margin: auto;
+            padding: 0 50px;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* vertical line */
+        .vl {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid #ddd;
+            height: 175px;
+        }
+
+        /* text inside the vertical line */
+        .inner {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 8px 10px;
+        }
+
+        /* hide some text on medium and large screens */
+        .hide-md-lg {
+            display: none;
+        }
+
+        /* bottom container */
+        .bottom-container {
+            text-align: center;
+            background-color: #666;
+            border-radius: 0px 0px 4px 4px;
+        }
+
+        /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 650px) {
+            .col {
+                width: 100%;
+                margin-top: 0;
+            }
+
+            /* hide the vertical line */
+            .vl {
+                display: none;
+            }
+
+            /* show the hidden text on small screens */
+            .hide-md-lg {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" data-auto-replace-svg="nest"></script>
 </head>
 
 <body>
@@ -241,7 +373,49 @@
                     <div class="foot-lnk">
                         <a href="#forgot">Forgot Password?</a>
                     </div>
+
+
+                    <div id="fb-root"></div>
+                    <script type="text/javascript">
+                        window.fbAsyncInit = function () {
+                            FB.init({
+                                appId: '2070803906416888', // App ID
+                                channelURL: '', // Channel File, not required so leave empty
+                                status: true, // check login status
+                                cookie: true, // enable cookies to allow the server to access the session
+                                oauth: true, // enable OAuth 2.0
+                                xfbml: false  // parse XFBML
+                            });
+                        };
+                        // logs the user in the application and facebook
+                        function login() {
+                            FB.getLoginStatus(function (r) {
+                                if (r.status === 'connected') {
+                                    window.location.href = 'fbconnect.php';
+                                } else {
+                                    FB.login(function (response) {
+                                        if (response.authResponse) {
+                                            //if (response.perms)
+                                            window.location.href = 'fbconnect.php';
+                                        } else {
+                                            // user is not logged in
+                                        }
+                                    }, { scope: 'email' }); // which data to access from user profile
+                                }
+                            });
+                        }
+                        // Load the SDK Asynchronously
+                        (function () {
+                            var e = document.createElement('script'); e.async = true;
+                            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+                            document.getElementById('fb-root').appendChild(e);
+                        }());
+                    </script>
+                    <a href='#' class="fb btn" onclick='login();'><i class="fab fa-facebook-f"></i> Login with
+                        Facebook</a>
                 </div>
+
+                
                 <div class="sign-up-htm">
                     <div class="group">
                         <label for="user" class="label">Username</label>
@@ -274,13 +448,13 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 </html>
